@@ -26,10 +26,12 @@ public class WhitePawn extends Piece {
         aux = position.UpCell();
         if (canMoveTo(aux,p))
             nextMovements.add(aux);
+        if (p.getCell().getCoord().getNumber()==7){
+            aux = position.UpCell().UpCell();
+            if (canMoveTo(aux,p))
+                nextMovements.add(aux);
+        }
 
-        aux = position.UpCell().UpCell();
-        if (canMoveTo(aux,p))
-            nextMovements.add(aux);
         //kill
         aux = position.UpCell().LeftCell();
         if (board.containsPieceAt(aux)

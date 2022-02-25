@@ -27,11 +27,11 @@ public class BlackPawn extends Piece {
         aux = position.DownCell();
         if (canMoveTo(aux,p))
             nextMovements.add(aux);
-
-        aux = position.DownCell().DownCell();
-        if (canMoveTo(aux,p))
-            nextMovements.add(aux);
-
+        if (p.getCell().getCoord().getNumber()==2){
+            aux = position.DownCell().DownCell();
+            if (canMoveTo(aux,p))
+                nextMovements.add(aux);
+        }
         //kill
         aux = position.DownCell().LeftCell();
         if (board.containsPieceAt(aux)

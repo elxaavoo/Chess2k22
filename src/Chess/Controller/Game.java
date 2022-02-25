@@ -27,7 +27,6 @@ public class Game implements Serializable {
      * Metodo que sirve para empezar el juego del ajedrez
      */
     public void start() {
-        String file = "";
         List<Coord> nextMovements = null;
         char option;
         do{
