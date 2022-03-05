@@ -4,15 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Horse extends Piece {
+    /**
+     * Constructor de Caballo
+     * @param cell
+     * @param chessType
+     */
     public Horse(Cell cell, ChessType chessType) {
         super(cell, chessType);
     }
+
     /**
-     * Metodo que te da los siguiente movimientos del caballo*/
+     * Metodo que da los movimientos del caballo
+     * @return Lista de movimientos del caballo
+     */
     public List<Coord> getNextMoveset() {
         return getNextMovesetAsHorse(this);
     }
 
+    /**
+     * Metodo que sirve para obtener las coordenadas como si fueses un caballo
+     * @param p
+     * @return Lista de coordenadas
+     */
     public static List<Coord> getNextMovesetAsHorse(Piece p){
         List<Coord> nextMovements = new ArrayList<>();
         Coord aux;
@@ -58,6 +71,12 @@ public abstract class Horse extends Piece {
         return nextMovements;
     }
 
+    /**
+     * Metodo para saber si la ficha se puede mover correctamente
+     * @param aux
+     * @param p
+     * @return Booleano de si se puede mover
+     */
     protected static boolean canMoveTo(Coord aux, Piece p){
         Board board = p.cell.getBoard();
         return (board.containsCellAt(aux) && !board.containsPieceAt(aux) ||

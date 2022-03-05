@@ -9,7 +9,10 @@ public abstract class Bishop extends Piece {
     }
 
     /**
-     * Da los movimientos de el Bishop a la ficha que le indiques. */
+     * Metodo que da los siguientes movimientos como si fuese un alfil
+     * @param p
+     * @return Lista de Coordenadas
+     */
     public static List<Coord> getMovementsAsBishop(Piece p){
         List<Coord> nextMovements = new LinkedList<>();
         Coord aux;
@@ -58,15 +61,22 @@ public abstract class Bishop extends Piece {
 
         return nextMovements;
     }
+
     /**
-     * Recibe los movimientos del Bishop como si fuese un Bishop*/
+     * Metodo para obtener siguientes movimientos del Alfil
+     * @return
+     */
     @Override
     public List<Coord> getNextMoveset() {
         return getMovementsAsBishop(this);
     }
 
     /**
-     * Mira para ver si se puede mover la ficha*/
+     * Metodo que te dice si se puede mover
+     * @param aux
+     * @param p
+     * @return Booleano de si se puede mover o no
+     */
     protected static boolean canMoveTo(Coord aux, Piece p){
         Board board = p.cell.getBoard();
         return (board.containsCellAt(aux) && !board.containsPieceAt(aux) ||

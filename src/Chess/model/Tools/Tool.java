@@ -19,6 +19,13 @@ public class Tool implements Serializable {
 
             return false;
     }
+
+    /**
+     * Metodo que sive para meter coordenada dentro de un array de coordenadas
+     * @param array
+     * @param coord
+     * @return Devuelve array con cordenadas
+     */
     public static Coord[] add(Coord[] array, Coord coord){
         Coord[] aux = new Coord[array.length+1];
 
@@ -28,11 +35,19 @@ public class Tool implements Serializable {
         aux[array.length]=coord;
         return aux;
     }
+
+    /**
+     * Metodo para mostrar las coordenadas de dentro de un array
+     * @param coords
+     */
     public static void show(Coord[] coords){
         for (Coord coord: coords)
             System.out.println(coord);
     }
 
+    /**
+     * Metodo que sirve para limpiar la pantalla en un terminal de linux o windows
+     */
     public static void limpiarPantalla() {
         System.out.print("\033[H\033[2J");
         System.out.flush();

@@ -12,8 +12,12 @@ public class Cell implements Serializable {
     private CellColor originalColor;
     private Piece piece;
     private Board board;
+
     /**
-     * Constructor de la Celda*/
+     * Constructor de Celda
+     * @param board
+     * @param coord
+     */
     public Cell(Board board,Coord coord){
         this.board=board;
         this.coord=coord;
@@ -25,34 +29,66 @@ public class Cell implements Serializable {
         color= originalColor;
     }
 
+    /**
+     * Metodo para saber si una celda esta vacia
+     * @return Booleano de si lo esta
+     */
     public boolean isEmpty(){
        return piece == null;
     }
 
+    /**
+     * Getter del tablero
+     * @return Tablero
+     */
     public Board getBoard() {
         return board;
     }
 
+    /**
+     * Getter de la Pieza
+     * @return Pieza
+     */
     public Piece getPiece() {
         return piece;
     }
 
+    /**
+     * Getter de la Coordenada
+     * @return Coordenada
+     */
     public Coord getCoord() {
         return coord;
     }
 
+    /**
+     * Getter del color de la celda
+     * @return Color de la celda
+     */
     public CellColor getColor() {
         return color;
     }
 
+    /**
+     * Setter de Color
+     * @param color
+     */
     public void setColor(CellColor color) {
         this.color = color;
     }
 
+    /**
+     * Setter de la pieza
+     * @param piece
+     */
     public void setPiece(Piece piece) {
         this.piece = piece;
     }
 
+    /**
+     * ToString de la Celda
+     * @return Forma en la que se ve una celda
+     */
     public String toString(){
         Attribute[] myFormat = new Attribute[]{color.getAttribute()};
         if (piece!=null)

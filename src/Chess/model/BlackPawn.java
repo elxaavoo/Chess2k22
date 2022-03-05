@@ -6,18 +6,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlackPawn extends Piece {
-
+    /**
+     * Constructor de Peon Negro
+     * @param cell
+     */
     public BlackPawn(Cell cell) {
         super(cell, ChessType.BLACK_PAWN);
         place();
     }
+
     /**
-     * Recibe los movimientos indicados para el Peon Negro*/
+     * Metodo que devuelve los movimientos como Peon Negro
+     * @return Lista de coordenadas de movimientos de Peones negros
+     */
     @Override
     public List<Coord> getNextMoveset() {
         return getNextMovesetAsBlackPawn(this);
     }
-    
+
+    /**
+     * Metodo que da los movimientos como si fueses un peon negro
+     * @param p
+     * @return Lista de Coordenadas de movimientos como si fueses un peon negro
+     */
     public static List<Coord> getNextMovesetAsBlackPawn(Piece p){
         List<Coord> nextMovements = new ArrayList<>();
         Coord aux;
@@ -44,6 +55,12 @@ public class BlackPawn extends Piece {
         return nextMovements;
     }
 
+    /**
+     * Metodo para saber si la ficha se puede mover o no se puede mover
+     * @param aux
+     * @param p
+     * @return Booleano de si se puede mover
+     */
     protected static boolean canMoveTo(Coord aux, Piece p){
         Board board = p.cell.getBoard();
         return (board.containsCellAt(aux) && !board.containsPieceAt(aux) ||

@@ -12,13 +12,21 @@ public abstract class Queen extends Piece{
     public Queen(Cell cell, ChessType chessType) {
         super(cell, chessType);
     }
+
     /**
-     * Metodo para obtener los movimientos de la reina*/
+     * Metodo que da los movimientos de la reina
+     * @return Lista de Coordendas
+     */
     @Override
     public List<Coord> getNextMoveset() {
         return getNextMovesetAsQueen(this);
     }
 
+    /**
+     * Lista de los siguientes movimientos como si fueses una reina
+     * @param p
+     * @return Lista de coordenadas
+     */
     public static List<Coord> getNextMovesetAsQueen(Piece p){
         List<Coord> movesetAsBishop = getMovementsAsBishop(p);
         List<Coord> movesetAsRook = getMovesetAsRook(p);

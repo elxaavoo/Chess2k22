@@ -6,23 +6,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WhitePawn extends Piece {
+    /**
+     * Constructor de Peon Blanco
+     * @param cell
+     */
     public WhitePawn(Cell cell) {
         super(cell, ChessType.WHITE_PAWN);
         place();
     }
+
     /**
-     * Metodo para obtener los movimientos del Peon Blanco*/
+     * Metodo que devuelve los posibles moviemientos en coordenadas
+     * @return Lista de Coordenadas de posibles movimientos
+     */
     @Override
     public List<Coord> getNextMoveset() {
         return getNextMovesetAsWhitePawn(this);
     }
-    
+
+    /**
+     * Metodo que sirve para obtener los movimientos como si fueses un peon blanco
+     * @param p
+     * @return Lista de Coordenadas de movimientos como si fueses un peon blanco
+     */
     public static List<Coord> getNextMovesetAsWhitePawn(Piece p){
         List<Coord> nextMovements = new ArrayList<>();
         Coord aux;
         Board board = p.cell.getBoard();
         Coord position = p.cell.getCoord();
-        //up
+        /** Movimientos de arriba*/
         aux = position.UpCell();
         if (canMoveTo(aux,p))
             nextMovements.add(aux);
@@ -32,7 +44,7 @@ public class WhitePawn extends Piece {
                 nextMovements.add(aux);
         }
 
-        //kill
+        /** Movimientos si hay ficha para matar*/
         aux = position.UpCell().LeftCell();
         if (board.containsPieceAt(aux)
                 && (board.getCellAt(aux).getPiece() != null && board.getCellAt(aux).getPiece().getColor() != p.getColor()))
@@ -43,7 +55,13 @@ public class WhitePawn extends Piece {
             nextMovements.add(aux);
         return nextMovements; 
     }
-    
+
+    /**
+     * Metodo para saber si puede moverse la ficha
+     * @param aux
+     * @param p
+     * @return Booleanado de si se puede mover o no
+     */
     protected static boolean canMoveTo(Coord aux, Piece p){
         Board board = p.cell.getBoard();
         return (board.containsCellAt(aux) && !board.containsPieceAt(aux) ||

@@ -16,52 +16,83 @@ public class Coord implements Serializable {
     }
 
     /**
-     * Metodo que te da la coordenada de abajo*/
+     * Metodo que da la Coordenada de abajo
+     * @return Coordenada
+     */
     public Coord DownCell(){
         return new Coord(x,y+1);
     }
+
     /**
-     * Metodo que te da la coordenada de arriba*/
+     * Metodo que da la coordenada de arriba
+     * @return Coordenada
+     */
     public Coord UpCell(){
         return new Coord(x,y-1);
     }
+
     /**
-     * Metodo que te da la coordenada de la derecha*/
+     * Metodo que da la coordenada de la derecha
+     * @return Coordenada
+     */
     public Coord RightCell(){
         return new Coord((char) (x+1),y);
     }
+
     /**
-     * Metodo que te da la coordenada de la izquierda*/
+     * Metodo que da la coordenada de la izquieda
+     * @return Coordenada
+     */
     public Coord LeftCell(){
         return new Coord((char) (x-1),y);
     }
 
+    /**
+     * Setter de la X
+     * @param x
+     */
     public void setX(char x) {
         this.x = x;
     }
+
     /**
-     * Te da la letra de la coordenada*/
+     * Getter de la letra de la Coordenada
+     * @return X
+     */
     public char getLetter() {
         return x;
     }
+
     /**
-     * Te da el numero de la coordenada*/
+     * Getter del Numero de la Coordenada
+     * @return Y
+     */
     public int getNumber() {
         return y;
     }
 
+    /**
+     * Setter de la Y
+     * @param y
+     */
     public void setY(int y) {
         this.y = y;
     }
+
     /**
-     * Metodo que sobreescribe el HashCode de la Coordenada*/
+     * HashCode de la Coordenada
+     * @return int
+     */
     @Override
     public int hashCode(){
         return y;
     }
+
     /**
-     * Metodo que sobreescribe la manera de saber si dos coordenadas son iguales entre sí, sabiendo que
-     * son iguales si el numero y la letra son el mismo que el de otra coordenada*/
+     * Metodo para saber si dos objetos son el mismo pero para coordenadas
+     * @param o
+     * @return Booleano de si son iguales o no lo son
+     */
     @Override
     public boolean equals(Object o){
         if (!(o instanceof Coord)) return false;

@@ -7,8 +7,12 @@ public abstract class Rook extends Piece {
     public Rook(Cell cell, ChessType chessType) {
         super(cell, chessType);
     }
+
     /**
-     * metodo para obetner los movimientos como si fuese una Torre*/
+     * Metodo para obtener movimientos como si fueses un torre
+     * @param p Pieza
+     * @return Lista de Coordenadas
+     */
     public static List<Coord> getMovesetAsRook(Piece p){
         List<Coord> nextMovements = new LinkedList<>();
         Coord aux;
@@ -60,14 +64,22 @@ public abstract class Rook extends Piece {
         } while (canMoveTo(aux,p) && continuar);
         return nextMovements;
     }
+
     /**
-     * Da los movimientos para esta ficha*/
+     * Siguientes movimientos de la torre
+     * @return Lista de coordenadas
+     */
     @Override
     public List<Coord> getNextMoveset() {
         return getMovesetAsRook(this);
     }
+
     /**
-     * Metodo que mira si se puede mover a las coordenadas indicadas*/
+     * Metodo para saber si la ficha se puede mover
+     * @param aux
+     * @param p
+     * @return Booleano de si se puede mover o no
+     */
     protected static boolean canMoveTo(Coord aux, Piece p){
         Board board = p.cell.getBoard();
         return (board.containsCellAt(aux) && !board.containsPieceAt(aux) ||

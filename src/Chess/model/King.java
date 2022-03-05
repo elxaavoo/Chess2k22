@@ -4,15 +4,29 @@ import java.util.LinkedList;
 import java.util.List;
 
 public abstract class King extends Piece{
+    /**
+     * Constructor del rey
+     * @param cell
+     * @param chessType
+     */
     public King(Cell cell, ChessType chessType) {
         super(cell, chessType);
     }
 
+    /**
+     * Metodo para obtener movimientos del rey
+     * @return Lista de Coordenadas
+     */
     @Override
     public List<Coord> getNextMoveset() {
         return getNextMovementsAsKing(this);
     }
-    
+
+    /**
+     * Metodo para obtener los movimientos como su fueses un rey
+     * @param p
+     * @return Lista de coordenadas
+     */
     public static List<Coord> getNextMovementsAsKing(Piece p){
         List<Coord> nextMovements = new LinkedList<>();
         Coord aux;
@@ -59,6 +73,12 @@ public abstract class King extends Piece{
         return nextMovements;
     }
 
+    /**
+     * Metodo que dice si se puede mover correctamente
+     * @param aux
+     * @param p
+     * @return Booleano que indica si se puede mover o no se puede mover
+     */
     protected static boolean canMoveTo(Coord aux, Piece p){
         Board board = p.cell.getBoard();
         return (board.containsCellAt(aux) && !board.containsPieceAt(aux) ||

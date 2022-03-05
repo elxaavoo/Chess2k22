@@ -8,6 +8,11 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Input implements Serializable {
+    /**
+     * Metodo para obtener el color de turno
+     * @param color
+     * @return Color del turno
+     */
     public static PieceColor getColorTurno(String color){
         if (color.toLowerCase()=="blanco")
             return PieceColor.WHITE;
@@ -16,6 +21,10 @@ public class Input implements Serializable {
         return null;
     }
 
+    /**
+     * Metodo para obtener la opción de juego
+     * @return Opcion del juego
+     */
     public static int getOptionGame(){
         Scanner sc = new Scanner(System.in);
         boolean pasarWhile = false;
@@ -34,6 +43,10 @@ public class Input implements Serializable {
         return opcion;
     }
 
+    /**
+     * Metodo para obtener coordenada
+     * @return Coordenada indicada
+     */
     public static Coord getCoordenada(){
         Scanner sc = new Scanner(System.in);
         String coord = "";
@@ -57,6 +70,10 @@ public class Input implements Serializable {
         return new Coord(x,y);
     }
 
+    /**
+     * Metodo para obtener opciones cuando ya estas jugando
+     * @return Opcion de juego
+     */
     public static char getOption(){
         Scanner sc = new Scanner(System.in);
         char option;
@@ -72,6 +89,10 @@ public class Input implements Serializable {
         return option;
     }
 
+    /**
+     * Metodo para obtener el color con el que quieres jugar
+     * @return Color con el que empiezas
+     */
     public static PieceColor getPieceColorBoard(){
         Scanner sc = new Scanner(System.in);
         System.out.println("=============================================");
@@ -85,6 +106,10 @@ public class Input implements Serializable {
 
     }
 
+    /**
+     * Metodo para obtener archivo de juego
+     * @return String
+     */
     public static String getFile(){
         String file = "";
         Scanner sc = new Scanner(System.in);
@@ -93,6 +118,10 @@ public class Input implements Serializable {
         return file;
     }
 
+    /**
+     * Metodo para conseguir  String
+     * @return String
+     */
     public static String getString() {
         Scanner sc = new Scanner(System.in);
         String out = "";
