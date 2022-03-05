@@ -25,6 +25,9 @@ public class App implements Serializable{
         }
     }
 
+    /**
+     * Titulo del Juego
+     */
     public static void title(){
         System.out.println("=============================================");
         System.out.println(" ██████╗██╗  ██╗███████╗███████╗███████╗██╗");
@@ -36,6 +39,9 @@ public class App implements Serializable{
         System.out.println("=============================================");
     }
 
+    /**
+     * Menu del juego
+     */
     public static void menu(){
         System.out.println("=============================================");
         System.out.println(" [1] - Empezar partida");

@@ -15,6 +15,10 @@ public class Game implements Serializable {
     private Board board;
     private PieceColor turno;
 
+    /**
+     * Constructor del juego
+     * @param turno
+     */
     public Game(PieceColor turno){
         this.board = new Board();
         if (turno==null)
@@ -24,7 +28,7 @@ public class Game implements Serializable {
     }
 
     /**
-     * Metodo que sirve para empezar el juego del ajedrez
+     * Metodo que comienza el juego
      */
     public void start() {
         List<Coord> nextMovements = null;
@@ -92,7 +96,7 @@ public class Game implements Serializable {
 
     /**
      * Sirve para saber si el rey negro a sido eliminado
-     * @return
+     * @return boolean de si esta el rey o no
      */
     private boolean whiteKingDeleted() {
         if (board.getStore().count(ChessType.BLACK_KING)==1)
@@ -102,7 +106,7 @@ public class Game implements Serializable {
     }
     /**
      * Sirve para saber si el rey blanco a sido eliminado
-     * @return
+     * @return booleano de si esta el rey o no
      */
     private boolean blackKingDeleted() {
         if (board.getStore().count(ChessType.WHITE_KING)==1)
@@ -120,11 +124,15 @@ public class Game implements Serializable {
         System.out.println("╚██████╔╝██║  ██║██║  ██║╚██████╗██║██║  ██║███████║    ██║     ╚██████╔╝██║  ██║    ╚█████╔╝╚██████╔╝╚██████╔╝██║  ██║██║  ██║██╗");
         System.out.println(" ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝╚═╝  ╚═╝╚══════╝    ╚═╝      ╚═════╝ ╚═╝  ╚═╝     ╚════╝  ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝");
     }
-
+    /** Mensaje de que se ha guardado el juego*/
     public void saved(){
         System.out.println("Partida guardada correctamente!");
     }
 
+    /**
+     * Metodo para guardar la partida dentro de un fichero
+     * @param file
+     */
     public void saveGameToFile(String file){
         try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
 
@@ -135,6 +143,11 @@ public class Game implements Serializable {
         }
     }
 
+    /**
+     * Metodo para cargar una partida guardada en la ruta de las Partidas Guardadas
+     * @param file
+     * @return Partida guardada del fichero donde se guarda la Partida
+     */
     public Game loadGame(String file){
 
         Game g = null;

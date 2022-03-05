@@ -1,0 +1,7 @@
+Chess
+Chess.Controller
+Chess.model
+Chess.model.ColorPieces
+Chess.model.dinamicEstructure
+Chess.model.Tools
+Chess.view

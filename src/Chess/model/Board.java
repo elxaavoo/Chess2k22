@@ -34,7 +34,10 @@ public class Board implements Serializable {
     }
 
     /**
-     * Comprueba si hay una celda en la coordenada indicada*/
+     * Metodo que sirve para saber si hay una celda en la coordenada indicada
+     * @param coord
+     * @return Booleano de si existe la celda o no
+     */
     public boolean containsCellAt(Coord coord){
 //        if (coord.getLetter()<'A' || coord.getLetter() > 'H')
 //            return false;
@@ -43,23 +46,38 @@ public class Board implements Serializable {
         return cells.containsKey(coord);
 
     }
+
     /**
-     * Mira a ver si contiene una pieza en la coordenada indicada*/
+     * Metodo que sirve para saber si existe una pieza en la coordenada indicada
+     * @param coord
+     * @return Booleana de si existe esa pieza en la coordenada
+     */
     public boolean containsPieceAt(Coord coord){
         Cell cell = getCellAt(coord);
         if (cell == null) return false;
         return (cell.getPiece()!=null);
     }
 
+    /**
+     * Metodo que sirve para obtener la celda de la coordenada indicada
+     * @param coord
+     * @return Celda donde he indicado con una coordenda
+     */
     public Cell getCellAt (Coord coord){
         return cells.get(coord);
     }
 
+    /**
+     * Metodo que sirve para obtener el almacen de piezas eliminidas
+     * @return devuelve el almacen de piezas eliminadas
+     */
     public IDeletedPieceManager getStore() {
         return store;
     }
+
     /**
-     * Pone las fichas en el tablero*/
+     * Metodo que sirve para poner las posicion de cada una de las fichas del tablero
+     */
     private void placePieces() {
 
         /**Peones de cada color*/
@@ -93,6 +111,11 @@ public class Board implements Serializable {
 
     }
 
+    /**
+     * Metodo que sirve para saber si hay Jaque sobre tu rey
+     * @param turno
+     * @return Booleano de si hay Jaque o no lo hay.
+     */
     public boolean isJaque(PieceColor turno){
         List<Piece> piezasRivales;
         Set<Coord> movimientosOponentes = new HashSet<>();
@@ -108,6 +131,11 @@ public class Board implements Serializable {
         return false;
     }
 
+    /**
+     * Metodo que sirve para obtener la coordenada del rey del color tu turno
+     * @param turno
+     * @return Coordenada del rey
+     */
     public Coord getCoordOfKingTurn(PieceColor turno){
         List<Piece> misPiezas;
         Coord king = null;
@@ -125,23 +153,36 @@ public class Board implements Serializable {
         return king;
     }
 
-
+    /**
+     * Metodo que obtienes un Mapa de las coordenadas y las celdas que les corresponden
+     * @return Un Mapa de Coordenadas y celdas
+     */
     public Map<Coord, Cell> getCells() {
         return cells;
     }
 
     /**
-     * Mira si una coordenada esta libre*/
+     * Metodo para saber si una coordenada esta libre
+     * @param aux
+     * @return Booleando de si lo esta
+     */
     public boolean isFree(Coord aux){
         return (this.containsCellAt(aux) && !this.containsPieceAt(aux));
     }
+
     /**
-     * Mira si en la coordenada hay un ficha contraria*/
+     * Metodo que te dice si la coordenada indicada tiene una ficha que es rival
+     * @param aux
+     * @return Booleando de si hay rival o no
+     */
     public boolean haveRival(Coord aux){
         return (this.containsCellAt(aux) && this.containsPieceAt(aux));
     }
+
     /**
-     * Marca las celdas donde se puede mover la ficha*/
+     * Metodo que sirve para cambiar el color de las celdas donde la ficha tiene posibles movimientos
+     * @param coords
+     */
     public void hightLight(List<Coord> coords){
         for (int i = 0; i<coords.size();i++){
             Coord aux = coords.get(i);
@@ -159,6 +200,10 @@ public class Board implements Serializable {
         }
     }
 
+    /**
+     * Metodo que sirve para obtener las fichas blancas del tablero
+     * @return Lista de las piezas que estan en el tablero
+     */
     public List<Piece> getWhitePiece() {
         List<Piece> pieces = new ArrayList<>();
         for (Cell cell: cells.values())
@@ -167,6 +212,10 @@ public class Board implements Serializable {
         return pieces;
     }
 
+    /**
+     * Metodo que sirve para obtener las fichas negras del tablero
+     * @return Lista de las piezas que estan en el tablero
+     */
     public List<Piece> getBlackPiece() {
         List<Piece> pieces = new ArrayList<>();
         for (Cell cell: cells.values())
@@ -174,8 +223,10 @@ public class Board implements Serializable {
                 pieces.add(cell.getPiece());
         return pieces;
     }
+
     /**
-     * Resetea los colores del tablero a normal, para que no esten marcados por el hightlight*/
+     * Metodo que resetea los colores del tablero a los originales
+     */
     public void resetColors(){
         for (Cell cell : cells.values())
             cell.resetColor();

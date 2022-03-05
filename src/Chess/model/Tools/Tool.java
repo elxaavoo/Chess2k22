@@ -5,7 +5,12 @@ import Chess.model.Coord;
 import java.io.Serializable;
 
 public class Tool implements Serializable {
-
+    /**
+     * Metodo que sirva para saber si contiene una coordenada un array de coordenadas
+     * @param coords
+     * @param coord
+     * @return Devuelve un booleano de si es correcto o no
+     */
     public static boolean contains(Coord[] coords, Coord coord){
         int i = 0;
         while(i < coords.length)

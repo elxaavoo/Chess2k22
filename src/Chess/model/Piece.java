@@ -13,29 +13,50 @@ public abstract class Piece implements Serializable {
 
     private ChessType chessType;
     protected Cell cell;
+
     /**
-     * Constructor de Pieza*/
+     * Constructor de Pieza
+     * @param cell
+     * @param chessType
+     */
     public Piece(Cell cell, ChessType chessType){
         this.cell=cell;
         this.chessType=chessType;
     }
 
+    /**
+     * Metodo que devuelve la celda de la pieza
+     * @return La celda de la Pieza
+     */
     public Cell getCell() {
         return cell;
     }
 
+    /**
+     * Metodo que devuelve el color de la pieza
+     * @return Color de la pieza
+     */
     public PieceColor getColor(){
         return chessType.getColor();
     }
+
     /**
-     * Metodo para poner la ficha en el lugar*/
+     * Metodo que sirve para poner la ficha en el tablero
+     */
     public void place(){
         cell.setPiece(this);
     }
+
     /**
-     * Metodo abstracto que lo tienen todos los hijos de esta clase padre*/
+     * Metodo abstracto para cada una de las piezas que heredan
+     * @return Lista de los movimientos de la ficha indicada
+     */
     public abstract List<Coord> getNextMoveset();
 
+    /**
+     * Metodo toString de Pieza
+     * @return La fonma en que se representa una pieza
+     */
     public String toString(){
         Attribute background = cell.getColor().getAttribute();
         Attribute textColor = chessType.getColor().getAttribute();
@@ -45,7 +66,10 @@ public abstract class Piece implements Serializable {
     }
 
     /**
-     * Metodo sobreescribido de equals para saber si dos piezas son las misma*/
+     * Metodo sobreescribido para saber si dos piezas son iguales
+     * @param o
+     * @return Booleando de si lo son
+     */
     @Override
     public boolean equals(Object o){
         if (o instanceof Piece){
@@ -58,11 +82,19 @@ public abstract class Piece implements Serializable {
             return false;
     }
 
+    /**
+     * Metodo para poner una celda a una pieza
+     * @param cell
+     */
     public void setCell(Cell cell) {
         this.cell = cell;
     }
+
     /**
-     * Metodo para poder mover una ficha a una nueva coordenada*/
+     * Metodo que sirve para mover una pieza
+     * @param coord
+     * @return Un booleando de si se puede mover o no
+     */
     public boolean moveTo(Coord coord) {
         if (cell == null || !cell.getBoard().containsCellAt(coord))
             return false;
@@ -84,6 +116,9 @@ public abstract class Piece implements Serializable {
         }
     }
 
+    /**
+     * Metodo que sirve que cuando el peon llegue al final se convierta en reina
+     */
     public void chagePawn(){
         if (this.getChessType()==ChessType.BLACK_PAWN && this.getCell().getCoord().getNumber()==8){
             cell.setPiece(new BlackQueen(cell));
@@ -94,11 +129,19 @@ public abstract class Piece implements Serializable {
         }
     }
 
+    /**
+     * Metodo que sirve para obtener el tipo de ficha de la ficha
+     * @return
+     */
     public ChessType getChessType() {
         return chessType;
     }
+
     /**
-     * Metodo para poder comprobar si te puedes mover a las coordenadas*/
+     * Metodo que sirve para ver si una ficha se puede mover o no
+     * @param aux
+     * @return Un booleando de si se puede mover
+     */
     protected boolean canMoveTo(Coord aux){
         Board board = cell.getBoard();
         return (board.containsCellAt(aux) && !board.containsPieceAt(aux) ||
